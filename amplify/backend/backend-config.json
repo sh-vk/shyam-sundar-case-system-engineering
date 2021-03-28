@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "shyamsundarcasesyste71d172ba": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
