@@ -1,0 +1,7 @@
+{
+    "tableName": "csproductsdb",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S",
+    "sortKeyName": "Name",
+    "sortKeyType": "S"
+}
