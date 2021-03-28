@@ -18,6 +18,8 @@ function App() {
   async function fetchProducts() {
     const apiData = await API.graphql({ query: listProducts });
     setProducts(apiData.data.listProducts.items);
+    const apiData2 = await API.get('product', '/product');
+    console.log({ apiData2 });
   }
 
   async function createProduct() {
