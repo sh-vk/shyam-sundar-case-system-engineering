@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "shyamsundarcasesyste71d172ba": {}
+      },
+      "function": {
+        "csproductlambda": {
+          "deploymentBucketName": "amplify-amplify0628f5cab4e34-staging-191946-deployment",
+          "s3Key": "amplify-builds/csproductlambda-626f2f644a3656614f6e-build.zip"
+        }
       }
     }
   }

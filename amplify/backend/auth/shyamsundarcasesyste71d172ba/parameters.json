@@ -1,6 +1,6 @@
 {
     "identityPoolName": "shyamsundarcasesyste71d172ba_identitypool_71d172ba",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "shyams71d172ba",
     "userPoolName": "shyamsundarcasesyste71d172ba_userpool_71d172ba",
     "autoVerifiedAttributes": [
