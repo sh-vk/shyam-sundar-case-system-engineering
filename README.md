@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# **Microervices based System Redesign**
+e-Commerce system engineering 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [**Introduction**]
 
-## Available Scripts
 
-In the project directory, you can run:
+## **Introduction**
+CloudSurfer Lmtd. Is a cloud
+based web shop for surf and skate gear. They ship
+to the whole of Europe to provide lovers of the sport of any level with equipment.
 
-### `npm start`
+Customers of CloudSurfer can browse items and place their order through a web
+interface or mobile application. Through logging into their account they can place
+an order and choose between two delivery options: having it shipped directly to
+their home address or delivery to a nearby pickup point. For both delivery options
+a text message is sent upon arrival.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## **Problem Statement**
+ To identify a simple (user) journey for which a microservices based
+solution would be helpful. In your solution, use at least two microservices. 
 
-### `npm test`
+Draw out a proposed software architecture and argue why and how it would be
+beneficial to CloudSurfer. 
+## **Current Implementation (Assumption)**
+Currently the web shop is a monolith application hosted on the cloud. It consist of 3 layers . The company has been scaling verically to cater to the demand. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Each release is requires testing of the complete application and hence release cycles are long.
 
-### `npm run build`
+## **User Journey**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Following is a simple user journey 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![User Journey](images/cloudSurfer.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The Microservices used are
+1. Users
+2. Products
+3. Orders
+4. Delivery
+5. Warehouse
+6. Payments
 
-### `npm run eject`
+## **Architecture Diagram based on AWS**
+![Architecture Diagram](images/Architecture%20Diagram.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+AWS Services used are
+1. Route 53
+2. Amplify
+3. AWS Cognito
+4. AWS S3
+5. AWS S3 
+6. AWS Lambda
+7. AWS Dynamodb
+8. Redis
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
