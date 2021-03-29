@@ -7,6 +7,7 @@ e-Commerce system engineering
   - [**Current Implementation (Assumption)**](#current-implementation-assumption)
   - [**User Journey**](#user-journey)
   - [**Architecture Diagram based on AWS**](#architecture-diagram-based-on-aws)
+  - [**Advantages of the Architecture**](#advantages-of-the-architecture)
 
 
 ## **Introduction**
@@ -59,3 +60,9 @@ AWS Services used are
 7. AWS Dynamodb
 8. Redis
 
+## **Advantages of the Architecture**
+1. Highly scalable serverless Architecture.
+2. Low Maintenance cost and administrative cost
+3. Continuous Deployment 
+4. Individually scale each service based on the load
+5. Easy Integration with other applications if necessary  
