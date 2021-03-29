@@ -1,4 +1,4 @@
-# **Microervices based System Redesign**
+# **Microservices based System Redesign**
 e-Commerce system engineering 
 
 - [**Introduction**]
@@ -23,7 +23,7 @@ solution would be helpful. In your solution, use at least two microservices.
 Draw out a proposed software architecture and argue why and how it would be
 beneficial to CloudSurfer. 
 ## **Current Implementation (Assumption)**
-Currently the web shop is a monolith application hosted on the cloud. It consist of 3 layers . The company has been scaling verically to cater to the demand. 
+Currently the web shop is a monolith application hosted on the cloud. It consist of 3 layers . The company has been scaling vertically to cater to the demand. 
 
 Each release is requires testing of the complete application and hence release cycles are long.
 
