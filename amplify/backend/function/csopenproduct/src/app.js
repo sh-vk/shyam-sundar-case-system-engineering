@@ -28,7 +28,7 @@ const partitionKeyType = "S";
 const sortKeyName = "Name";
 const sortKeyType = "S";
 const hasSortKey = sortKeyName !== "";
-const path = "/products";
+const path = "/csproducts";
 const UNAUTH = 'UNAUTH';
 const hashKeyPath = '/:' + partitionKeyName;
 const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
@@ -57,11 +57,10 @@ const convertUrlType = (param, type) => {
 /********************************
  * HTTP Get method for list objects *
  ********************************/
-
  app.get(path, function(req, res) {
   const queryParams = {
     TableName: tableName,
-    //ProjectionExpression: "id, Description"
+    //ProjectionExpression: "id,Description"
   };
 
   dynamodb.scan(queryParams, (err, data) => {
@@ -72,6 +71,7 @@ const convertUrlType = (param, type) => {
     }
   });
 });
+
 
 app.get(path + hashKeyPath, function(req, res) {
   var condition = {}
@@ -156,6 +156,7 @@ app.get(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
 *************************************/
 
 app.put(path, function(req, res) {
+  console.log(req);
 
   if (userIdPresent) {
     req.body['userId'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;

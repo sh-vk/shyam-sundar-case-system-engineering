@@ -18,7 +18,11 @@
       "function": {
         "csproductlambda": {
           "deploymentBucketName": "amplify-amplify0628f5cab4e34-staging-191946-deployment",
-          "s3Key": "amplify-builds/csproductlambda-626f2f644a3656614f6e-build.zip"
+          "s3Key": "amplify-builds/csproductlambda-73484630716d6f465439-build.zip"
+        },
+        "csopenproduct": {
+          "deploymentBucketName": "amplify-amplify0628f5cab4e34-staging-191946-deployment",
+          "s3Key": "amplify-builds/csopenproduct-69784d5238504f726265-build.zip"
         }
       }
     }

@@ -1,74 +1,106 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { API } from 'aws-amplify';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import { listProducts } from './graphql/queries';
-import { createProduct as createProductMutation, deleteProduct as deleteProductMutation } from './graphql/mutations';
+import React, { Component } from "react";
+import List from "./List";
+import Details from "./Details";
 
-const initialFormState = { name: '', description: '',price: 0 }
+import Amplify, { API } from "aws-amplify";
+import aws_exports from "./aws-exports";
+import { withAuthenticator } from '@aws-amplify/ui-react';
+Amplify.configure(aws_exports);
 
-function App() {
-  const [products, setProducts] = useState([]);
-  const [formData, setFormData] = useState(initialFormState);
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  async function fetchProducts() {
-    const apiData = await API.graphql({ query: listProducts });
-    setProducts(apiData.data.listProducts.items);
-    const apiData2 = await API.get('product', '/product');
-    console.log({ apiData2 });
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: "",
+      title: "",
+      list: [],
+      item: {},
+      showDetails: false
+    };
   }
 
-  async function createProduct() {
-    if (!formData.name || !formData.description || !formData.price) return;
-    await API.graphql({ query: createProductMutation, variables: { input: formData } });
-    setProducts([ ...products, formData ]);
-    setFormData(initialFormState);
+  async componentDidMount() {
+    await this.fetchList();
+  }
+  handleChange = event => {
+    const id = event.target.id;
+    this.setState({ [id]: event.target.value });
+  };
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    await API.post("csproduct", "/csproducts", {
+      body: {
+        id: Date.now().toString(),
+        Name: this.state.title,
+        Description: this.state.content
+      }
+    });
+
+    this.setState({ content: "", title: "" });
+    this.fetchList();
+  };
+  async fetchList() {
+    const response = await API.get("csproduct", "/csproducts");
+    this.setState({ list: [...response] });
   }
 
-  async function deleteProduct({ id }) {
-    const newProductsArray = products.filter(product => product.id !== id);
-    setProducts(newProductsArray);
-    await API.graphql({ query: deleteProductMutation, variables: { input: { id } }});
-  }
+  loadDetailsPage = async id => {
+    const response = await API.get("csproduct", "/csproducts/" + id);
+    this.setState({ item: { ...response[0] }, showDetails: true });
+  };
 
-  return (
-    <div className="App">
-      <h1>My Products App</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-        placeholder="Product name"
-        value={formData.name}
-      />
-      <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-        placeholder="Product description"
-        value={formData.description}
-      />
-      <input
-        onChange={e => setFormData({ ...formData, 'price': e.target.value})}
-        placeholder="Product price"
-        value={formData.price}
-      />
-      <button onClick={createProduct}>Create Product</button>
-      <div style={{marginBottom: 30}}>
-        {
-          products.map(product => (
-            <div key={product.id || product.name}>
-              <h2>{product.name}</h2>
-              <p>{product.description}</p>
-              <p>{product.price}</p>
-              <button onClick={() => deleteProduct(product)}>Delete product</button>
-            </div>
-          ))
-        }
+  loadListPage = () => {
+    this.setState({ showDetails: false });
+  };
+
+  delete = async id => {
+    //TODO: Implement functionality
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <form onSubmit={this.handleSubmit}>
+          <legend>Add</legend>
+          <div className="form-group">
+            <label htmlFor="title">Product Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="title"
+              placeholder="Title"
+              value={this.state.title}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="content">Description</label>
+            <textarea
+              className="form-control"
+              id="content"
+              placeholder="Content"
+              value={this.state.content}
+              onChange={this.handleChange}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </form>
+        <hr />
+        {this.state.showDetails ? (
+          <Details
+            item={this.state.item}
+            loadListPage={this.loadListPage}
+            delete={this.delete}
+          />
+        ) : (
+          <List list={this.state.list} loadDetailsPage={this.loadDetailsPage} />
+        )}
       </div>
-      <AmplifySignOut />
-    </div>
-  );
+    );
+  }
 }
 
-export default withAuthenticator(App);
+export default withAuthenticator(App, true);

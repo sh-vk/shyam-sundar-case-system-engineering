@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/csproducts",
+            "lambdaFunction": "csopenproduct",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/csproducts"
+        }
+    ],
+    "resourceName": "csproduct",
+    "apiName": "csproduct",
+    "functionArns": [
+        {
+            "lambdaFunction": "csopenproduct"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-amplify0628f5cab4e34-staging-191946-authRole",
+        "unAuthRoleName": "amplify-amplify0628f5cab4e34-staging-191946-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "csopenproduct",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
